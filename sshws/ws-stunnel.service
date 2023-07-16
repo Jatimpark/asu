@@ -1,5 +1,5 @@
 [Unit]
-Description=SSH Over Websocket Python ARTA M
+Description=SSH Over Websocket Python By Etil
 Documentation=https://google.com
 After=network.target nss-lookup.target
 
