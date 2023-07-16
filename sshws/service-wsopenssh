@@ -1,5 +1,5 @@
 [Unit]
-Description=Websocket-OpenSSH By ARTA M
+Description=Websocket-OpenSSH By ETIL
 Documentation=https://google.com
 After=network.target nss-lookup.target
 
