@@ -28,7 +28,7 @@ cp -r /root/udp backup/udp
 cd /root
 zip -r $Name-$IP-$date.zip backup > /dev/null 2>&1
 rclone copy /root/$Name-$IP-$date.zip MW-VPN:
-url=$(rclone link ARYA-VPN:$Name-$IP-$date.zip)
+url=$(rclone link dr:$Name-$IP-$date.zip)
 id=(`echo $url | grep '^https' | cut -d'=' -f2`)
 link="https://drive.google.com/u/4/uc?id=${id}&export=download"
 echo -e "The following is a link to your vps data backup file."
