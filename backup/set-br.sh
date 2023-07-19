@@ -3,24 +3,18 @@ dateFromServer=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Dat
 biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
 #########################
 
-# // Export Banner Status Information
-export EROR="[${RED} EROR ${NC}]"
-export INFO="[${YELLOW} INFO ${NC}]"
-export OKEY="[${GREEN} OKEY ${NC}]"
-export PENDING="[${YELLOW} PENDING ${NC}]"
-export SEND="[${YELLOW} SEND ${NC}]"
-export RECEIVE="[${YELLOW} RECEIVE ${NC}]"
 
-# // Export Align
-export BOLD="\e[1m"
-export WARNING="${RED}\e[5m"
-export UNDERLINE="\e[4m"
+clear
+cd
+red='\e[1;31m'
+green='\e[0;32m'
+yell='\e[1;33m'
+NC='\e[0m'
+echo "Setting UP"
+echo "Progress..."
+sleep 3
+echo ""
 
-
-#fi
-#sleep 3
-#echo -e "
-#"
 date
 echo ""
 sleep 1
@@ -53,10 +47,35 @@ echo -e "[ ${green}INFO${NC} ] Already Installed... "
 fi
 sleep 1
 echo -e "[ ${green}INFO${NC} ] Creating service... "
+
+cat> /etc/msmtprc << EOF
+account default
+host smtp.gmail.com
+port 587
+from 3bulanmm@gmail.com
+tls on
+tls_starttls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+auth on
+user 3bulanmm
+password aww123321aww
+logfile ~/.msmtp.log
+EOF
+
+chown -R www-data:www-data /etc/msmtprc
 sleep 1
 echo -e "[ ${green}INFO${NC} ] Downloading files... "
 wget -q -O /usr/bin/backup "https://raw.githubusercontent.com/Jatimpark/asu/main/backup/backup.sh" && chmod +x /usr/bin/backup
 wget -q -O /usr/bin/restore "https://raw.githubusercontent.com/Jatimpark/asu/main/backup/restore.sh" && chmod +x /usr/bin/restore
+wget -q -O /usr/bin/cleaner "https://raw.githubusercontent.com/Jatimpark/asu/main/backup/logcleaner.sh" && chmod +x /usr/bin/cleaner
+
+if [ ! -f "/etc/cron.d/cleaner" ]; then
+cat> /etc/cron.d/cleaner << END
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+* */6 * * * root /usr/bin/cleaner
+END
+fi
 
 service cron restart > /dev/null 2>&1
 
