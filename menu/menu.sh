@@ -63,27 +63,20 @@ ssx=$(grep -c -E "^## " "/etc/xray/config.json")
 let ssa=$ssx/2
 
 UDPX="https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1S3IE25v_fyUfCLslnujFBSBMNunDHDk2' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1S3IE25v_fyUfCLslnujFBSBMNunDHDk2"
-# // Exporting Language to UTF-8
-BIBlack='\033[1;90m'      # Black
-BIRed='\033[1;91m'        # Red
-BIGreen='\033[1;92m'      # Green
-BIYellow='\033[1;93m'     # Yellow
-BIBlue='\033[1;94m'       # Blue
-BIPurple='\033[1;95m'     # Purple
-BICyan='\033[1;96m'       # Cyan
-BIWhite='\033[1;97m'      # White
-UWhite='\033[4;37m'       # White
-On_IPurple='\033[0;105m'  #
-On_IRed='\033[0;101m'
-IBlack='\033[0;90m'       # Black
-IRed='\033[0;91m'         # Red
-IGreen='\033[0;92m'       # Green
-IYellow='\033[0;93m'      # Yellow
-IBlue='\033[0;94m'        # Blue
-IPurple='\033[0;95m'      # Purple
-ICyan='\033[0;96m'        # Cyan
-IWhite='\033[0;97m'       # White
-NC='\e[0m'
+BIYellow='\033[0;33m'
+NC='\033[0;37m'
+BICyan='\033[0;34m'
+WT='\033[0;37m'
+GREEN='\033[0;32m'
+PURPLE='\033[0;33m'
+RED='\033[0;31m'
+green='\033[0;32m'
+red='\033[0;31m'
+RED='\033[0;31m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+LIGHT='\033[0;37m'
+ORANGE='\033[0;33m'
 #Download/Upload today
 dtoday="$(vnstat -i eth0 | grep "today" | awk '{print $2" "substr ($3, 1, 1)}')"
 utoday="$(vnstat -i eth0 | grep "today" | awk '{print $5" "substr ($6, 1, 1)}')"
@@ -185,7 +178,7 @@ echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━�
 read -n 1 -s -r -p "Press any key to back on menu"
 setting-menu
 else
-echo "IP=$host" > /var/lib/scrz-prem/ipvps.conf
+echo "IP=$host" > /var/lib/SIJA/ipvps.conf
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo "Dont forget to renew cert"
 echo ""
@@ -196,7 +189,7 @@ fi
 function genssl(){
 clear
 systemctl stop nginx
-domain=$(cat /var/lib/scrz-prem/ipvps.conf | cut -d'=' -f2)
+domain=$(cat /var/lib/SIJA/ipvps.conf | cut -d'=' -f2)
 Cek=$(lsof -i:80 | cut -d' ' -f1 | awk 'NR==2 {print $1}')
 if [[ ! -z "$Cek" ]]; then
 sleep 1
@@ -224,7 +217,6 @@ echo ""
 read -n 1 -s -r -p "Press any key to back on menu"
 menu
 }
-#export sem=$( curl -s https://raw.githubusercontent.com/artanodrop/permission/main/versions)
 # TOTAL RAM
 total_ram=` grep "MemTotal: " /proc/meminfo | awk '{ print $2}'`
 totalram=$(($total_ram/1024))
@@ -254,37 +246,37 @@ echo -e ""
 echo -e "${BICyan} ┌─────────────────────────────────────────────────────┐${NC}"
 echo -e "${BICyan} │                  ${BIPurple}${NC}INFO SERVER VPS${NC}"     
 echo -e "${BICyan} │"
-echo -e " ${BICyan}│  ${BICyan} Hostname     : $HOSTNAME"
-echo -e " ${BICyan}│  ${BICyan} Public IP    : $IPVPS"
-echo -e " ${BICyan}│  ${BICyan} Domain       : $Domen"
-echo -e " ${BICyan}│  ${BICyan} ISP          : $ISPVPS"
-echo -e " ${BICyan}│  ${BICyan} Total RAM    : ${totalram}MB"
-echo -e " ${BICyan}│  ${BICyan} Usage Memory : $MEMOFREE${NC}"
-echo -e " ${BICyan}│  ${BICyan} LoadCPU      : $LOADCPU%${NC}"
-echo -e " ${BICyan}│  ${BICyan} Core System  : $CORE${NC}"
-echo -e " ${BICyan}│  ${BICyan} Waktu Aktif  : $uphours $upminutes $uptimecek"
-echo -e " ${BICyan}│  ${BICyan} System OS    : $MODEL${NC}"
-echo -e " ${BICyan}│  ${BICyan} Date         : $DATEVPS${NC}"
-echo -e " ${BICyan}│  ${BICyan} Time         : $TIMEZONE${NC}"
+echo -e " ${BICyan}│  ${WT} Hostname     :${BIYellow} $HOSTNAME"
+echo -e " ${BICyan}│  ${WT} Public IP    :${BIYellow} $IPVPS"
+echo -e " ${BICyan}│  ${WT} Domain       : ${BIYellow}$Domen"
+echo -e " ${BICyan}│  ${WT} ISP          : ${BIYellow}$ISPVPS"
+echo -e " ${BICyan}│  ${WT} Total RAM    : ${BIYellow}${totalram}MB"
+echo -e " ${BICyan}│  ${WT} Usage Memory : ${BIYellow}$MEMOFREE${NC}"
+echo -e " ${BICyan}│  ${WT} LoadCPU      : ${BIYellow}$LOADCPU%${NC}"
+echo -e " ${BICyan}│  ${WT} Core System  : ${BIYellow}$CORE${NC}"
+echo -e " ${BICyan}│  ${WT} Waktu Aktif  : ${BIYellow}$uphours $upminutes $uptimecek"
+echo -e " ${BICyan}│  ${WT} System OS    : ${BIYellow}$MODEL${NC}"
+echo -e " ${BICyan}│  ${WT} Date         :${BIYellow} $DATEVPS${NC}"
+echo -e " ${BICyan}│  ${WT} Time         : ${BIYellow}$TIMEZONE${NC}"
 echo -e " ${BICyan}└─────────────────────────────────────────────────────┘${NC}"
 echo -e "${BICyan} ┌─────────────────────────────────────────────────────┐${NC}"
-echo -e "     ${BICyan}[${BIWhite}01${BICyan}] SSH     ${BICyan}[${BIYellow}Menu${BICyan}]${NC}"    "     ${BICyan}[${BIWhite}07${BICyan}] BACKUP    ${BICyan}[${BIYellow}Menu${BICyan}]${NC}" "${BICyan}   "
-echo -e "     ${BICyan}[${BIWhite}02${BICyan}] VMESS   ${BICyan}[${BIYellow}Menu${BICyan}]${NC}" "     ${BICyan}[${BIWhite}08${BICyan}] ADD-HOST  ${NC}"
-echo -e "     ${BICyan}[${BIWhite}03${BICyan}] VLESS   ${BICyan}[${BIYellow}Menu${BICyan}]${NC}"  "     ${BICyan}[${BIWhite}09${BICyan}] CERT SSL     ${NC}" "${BICyan}  "
-echo -e "     ${BICyan}[${BIWhite}04${BICyan}] TROJAN  ${BICyan}[${BIYellow}Menu${BICyan}]${NC}" "     ${BICyan}[${BIWhite}10${BICyan}] INSTAL UDP         "
-echo -e "     ${BICyan}[${BIWhite}05${BICyan}] SETTING ${BICyan}[${BIYellow}Menu${BICyan}]${NC}"  "     ${BICyan}[${BIWhite}11${BICyan}] UPDATE MENU ${NC}"
-echo -e "     ${BICyan}[${BIWhite}06${BICyan}] TRIALL  ${BICyan}[${BIYellow}Menu${BICyan}]${NC}"  "     ${BICyan}[${BIWhite}12${BICyan}] EXIT  ${NC}"
+echo -e "     ${BICyan}[${GREEN}01${BICyan}] ${WT}SSH     ${BICyan}[${BIYellow}Menu${BICyan}]${NC}"    "     ${BICyan}[${GREEN}07${BICyan}] ${WT}BACKUP  ${NC} "
+echo -e "     ${BICyan}[${GREEN}02${BICyan}] ${WT}VMESS   ${BICyan}[${BIYellow}Menu${BICyan}]${NC}" "     ${BICyan}[${GREEN}08${BICyan}] ${WT}ADD-HOST  ${NC}"
+echo -e "     ${BICyan}[${GREEN}03${BICyan}] ${WT}VLESS   ${BICyan}[${BIYellow}Menu${BICyan}]${NC}"  "     ${BICyan}[${GREEN}09${BICyan}] ${WT}CERT SSL     ${NC}"
+echo -e "     ${BICyan}[${GREEN}04${BICyan}] ${WT}TROJAN  ${BICyan}[${BIYellow}Menu${BICyan}]${NC}" "     ${BICyan}[${GREEN}10${BICyan}]${WT} INSTAL UDP         "
+echo -e "     ${BICyan}[${GREEN}05${BICyan}] ${WT}SETTING ${BICyan}[${BIYellow}Menu${BICyan}]${NC}"  "     ${BICyan}[${GREEN}11${BICyan}] ${WT}UPDATE MENU ${NC}"
+echo -e "     ${BICyan}[${GREEN}06${BICyan}] ${WT}TRIALL  ${BICyan}[${BIYellow}Menu${BICyan}]${NC}"  "     ${BICyan}[${GREEN}12${BICyan}]${WT} EXIT  ${NC}"
 echo -e " ${BICyan}└─────────────────────────────────────────────────────┘${NC}"
 echo -e "${BICyan} ┌─────────────────────────────────────────────────────┐${NC}"
-echo -e "${BICyan} │  \033[0m ${BOLD}${GREEN}   ${BIYellow} SSH${GREEN}       ${BIYellow}VMESS  ${GREEN}     ${BIYellow}VLESS  ${GREEN}     ${BIYellow}TROJAN${GREEN}     $NC "
+echo -e "${BICyan} │  \033[0m ${BOLD}${GREEN}   ${GREEN} SSH${GREEN}       ${GREEN}VMESS  ${GREEN}     ${GREEN}VLESS  ${GREEN}     ${GREEN}TROJAN${GREEN}     $NC "
 echo -e "${BICyan} │  \033[0m ${Blue}     $ssh1         $vma           $vla           $tra              $NC"
 echo -e "${BICyan} └─────────────────────────────────────────────────────┘${NC}"
 echo -e "${BICyan} ┌─────────────────────────────────────────────────────┐${NC}"
-echo -e "    ${BICyan} SSH ${NC}: $ressh"" ${BICyan} NGINX ${NC}: $resngx"" ${BICyan}  XRAY ${NC}: $resv2r"" ${BICyan} TROJAN ${NC}: $resv2r"
-echo -e "  ${BICyan}     STUNNEL ${NC}: $resst" "${BICyan} DROPBEAR ${NC}: $resdbr" "${BICyan} SSH-WS ${NC}: $ressshws"
+echo -e "    ${GREEN} SSH ${RED}: $ressh"" ${GREEN} NGINX ${RED}: $resngx"" ${GREEN}  XRAY ${RED}: $resv2r"" ${GREEN} TROJAN ${RED}: $resv2r"
+echo -e "  ${GREEN}     STUNNEL ${RED}: $resst" "${GREEN} DROPBEAR ${RED}: $resdbr" "${GREEN} SSH-WS ${RED}: $ressshws"
 echo -e " ${BICyan}└─────────────────────────────────────────────────────┘${NC}"
 echo -e "${BICyan} ┌─────────────────────────────────────────────────────┐${NC}"
-echo -e "${BICyan} │$NC ${BICyan}HARI INI${NC}: ${red}$ttoday$NC ${BICyan}KEMARIN${NC}: ${red}$tyest$NC ${BICyan}BULAN${NC}: ${red}$tmon$NC $NC"
+echo -e "${BICyan} │$NC ${GREEN}HARI INI${NC}: ${ORANGE}$ttoday$NC ${GREEN}KEMARIN${NC}: ${ORANGE}$tyest$NC ${GREEN}BULAN${NC}: ${ORANGE}$tmon$NC $NC"
 echo -e "${BICyan} └─────────────────────────────────────────────────────┘${NC}"
 echo -e "${BICyan} ┌─────────────────────────────────────────────────────┐${NC}"
 echo -e "${GREEN}  ${RED}▁ ${CYAN}▂ ${GREEN}▄ ${ORANGE}▅${PINK} ▆${GREEN} ▇ ${RED}█${BLUE}𒆜${CYAN} ༻${NC}  SCRIPT ARYA BLITAR ${BLUE}༺ ${RED}𒆜${GREEN}█ ${ORANGE}▇ ${CYAN}▆ ${RED}▅ ${GREEN}▄ ${ORANGE}▂ ${PINK}▁\E[0m"
@@ -297,7 +289,7 @@ echo -e " ${BICyan}│${ICyan}  Expiry In     : ${NC}$(( (d1 - d2) / 86400 )) ${
 }
 mai="datediff "$Exp" "$DATE""
 echo -e " ${BICyan}┌─────────────────────────────────────────────────────┐${NC}"
-echo -e " ${BICyan}│ ${ICyan} Version       : ${NC}$(cat /opt/.ver) Last Update ${NC}"
+echo -e " ${BICyan}│ ${ICyan} Version       : ${NC}$(cat /opt/.ver)Last Update ${NC}"
 echo -e " ${BICyan}│${ICyan}  User          :${NC} $Name ${NC}"
 if [ $exp \< 1000 ];
 then
