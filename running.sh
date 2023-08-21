@@ -107,108 +107,108 @@ clear
 
 # STATUS SERVICE OPENVPN
 if [[ $oovpn == "active" ]]; then
-  status_openvpn=" ${GREEN} Aktif${NC} "
+  status_openvpn=" ${GREEN}Aktif${NC} "
 else
   status_openvpn="${RED} Error ${NC}"
 fi
 
 # STATUS SERVICE  SSH 
 if [[ $ssh_service == "running" ]]; then 
-   status_ssh=" ${GREEN} Aktif${NC} "
+   status_ssh=" ${GREEN}Aktif${NC} "
 else
    status_ssh="${RED} Error ${NC}"
 fi
 
 # STATUS SERVICE  SQUID 
 if [[ $squid_service == "running" ]]; then 
-   status_squid=" ${GREEN} Aktif${NC} "
+   status_squid=" ${GREEN}Aktif${NC} "
 else
    status_squid="${RED} Error ${NC}"
 fi
 
 # STATUS SERVICE  VNSTAT 
 if [[ $vnstat_service == "running" ]]; then 
-   status_vnstat=" ${GREEN} Aktif${NC} "
+   status_vnstat=" ${GREEN}Aktif${NC} "
 else
    status_vnstat="${RED} Error ${NC}"
 fi
 
 # STATUS SERVICE  CRONS 
 if [[ $cron_service == "running" ]]; then 
-   status_cron=" ${GREEN} Aktif${NC} "
+   status_cron=" ${GREEN}Aktif${NC} "
 else
    status_cron="${RED} Error ${NC}"
 fi
 
 # STATUS SERVICE  FAIL2BAN 
 if [[ $fail2ban_service == "running" ]]; then 
-   status_fail2ban=" ${GREEN} Aktif${NC} "
+   status_fail2ban=" ${GREEN}Aktif${NC} "
 else
    status_fail2ban="${RED} Error ${NC}"
 fi
 
 # STATUS SERVICE  TLS 
 if [[ $tls_v2ray_status == "running" ]]; then 
-   status_tls_v2ray=" ${GREEN} Aktif${NC} "
+   status_tls_v2ray=" ${GREEN}Aktif${NC} "
 else
    status_tls_v2ray="${RED} Error ${NC}"
 fi
 
 # STATUS SERVICE NON TLS V2RAY
 if [[ $nontls_v2ray_status == "running" ]]; then 
-   status_nontls_v2ray=" ${GREEN} Aktif${NC} "
+   status_nontls_v2ray=" ${GREEN}Aktif${NC} "
 else
    status_nontls_v2ray="${RED} Error ${NC}"
 fi
 
 # STATUS SERVICE VLESS HTTPS
 if [[ $vless_tls_v2ray_status == "running" ]]; then
-  status_tls_vless=" ${GREEN} Aktif${NC} "
+  status_tls_vless=" ${GREEN}Aktif${NC} "
 else
   status_tls_vless="${RED} Error ${NC}"
 fi
 
 # STATUS SERVICE VLESS HTTP
 if [[ $vless_nontls_v2ray_status == "running" ]]; then
-  status_nontls_vless=" ${GREEN} Aktif${NC} "
+  status_nontls_vless=" ${GREEN}Aktif${NC} "
 else
   status_nontls_vless="${RED} Error ${NC}"
 fi
 # STATUS SERVICE TROJAN
 if [[ $trojan_server == "running" ]]; then 
-   status_virus_trojan=" ${GREEN} Aktif${NC} "
+   status_virus_trojan=" ${GREEN}Aktif${NC} "
 else
    status_virus_trojan="${RED} Error ${NC}"
 fi
 # Status Service Trojan GO
 if [[ $strgo == "active" ]]; then
-  status_trgo=" ${GREEN} Aktif${NC} "
+  status_trgo=" ${GREEN}Aktif${NC} "
 else
   status_trgo="${RED} Error ${NC}"
 fi
 # STATUS SERVICE DROPBEAR
 if [[ $dropbear_status == "running" ]]; then 
-   status_beruangjatuh=" ${GREEN} Aktif${NC} "
+   status_beruangjatuh=" ${GREEN}Aktif${NC} "
 else
    status_beruangjatuh="${RED} Error ${NC}"
 fi
 
 # STATUS SERVICE STUNNEL
 if [[ $stunnel_service == "running" ]]; then 
-   status_stunnel=" ${GREEN} Aktif${NC} "
+   status_stunnel=" ${GREEN}Aktif${NC} "
 else
    status_stunnel="${RED} Error ${NC}"
 fi
 # STATUS SERVICE WEBSOCKET TLS
 if [[ $wstls == "running" ]]; then 
-   swstls=" ${GREEN} Aktif${NC} "
+   swstls=" ${GREEN}Aktif${NC} "
 else
    swstls="${RED} Error ${NC}"
 fi
 
 # STATUS SERVICE WEBSOCKET DROPBEAR
 if [[ $wsdrop == "running" ]]; then 
-   swsdrop=" ${GREEN}bAktif${NC} "
+   swsdrop=" ${GREEN}Aktif${NC} "
 else
    swsdrop="${RED} Error ${NC}"
 fi
