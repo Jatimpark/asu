@@ -88,7 +88,7 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${user_EXISTS} == '0' ]]; do
 		fi
 	done
 read -p "Expired (Days) : " masaaktif
-sed -i '/#trojango$/a\##? '"$user""'"' /etc/trojan-go/config.json
+sed -i '/#trojango$/a\##? $user ' /etc/trojan-go/config.json
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 hariini=`date -d "0 days" +"%Y-%m-%d"`
 echo -e "##? $user $exp" >> /etc/trojan-go/akun.conf
