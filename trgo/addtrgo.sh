@@ -87,13 +87,11 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${user_EXISTS} == '0' ]]; do
 			exit 1
 		fi
 	done
-read -p "   Expired (days): " masaaktif
+read -p "Expired (Days) : " masaaktif
+sed -i '/#trojango$/a\##? '"$user""'"' /etc/trojan-go/config.json
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-sed -i '/#trojango$/a\#### '"$user $exp"'\
-},{"password": "'""$uuid""'","email": "'""$user""'"' /etc/trojan-go/config.json
-sed -i '/#trojango$/a\#### '"$user $exp"'\
-},{"password": "'""$uuid""'","email": "'""$user""'"' /etc/trojan-go/config.json
-
+hariini=`date -d "0 days" +"%Y-%m-%d"`
+echo -e "##? $user $exp" >> /etc/trojan-go/akun.conf
 systemctl restart trojan-go.service
 link="trojan://${user}@bug.com:2087/?sni=${domain}&type=ws&host=${domain}&path=/trojango&encryption=none#$user"
 clear
