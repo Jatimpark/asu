@@ -72,7 +72,7 @@ clear
 clear
 clear
 echo -n > /tmp/other.txt
-data=( `cat /etc/trojan-go/akun.conf | grep '^##? | cut -d ' ' -f 2`);
+data=( `cat /etc/trojan-go/akun.conf | grep '^#&# | cut -d ' ' -f 2`);
 echo "------------------------------------";
 echo "-----=[ Trojan-Go User Login ]=-----";
 echo "------------------------------------";
