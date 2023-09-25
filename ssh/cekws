@@ -68,7 +68,7 @@ gb=$(con ${wey})
 lastlogin=$(cat /var/log/xray/access.log | grep -w "$akun" | tail -n 500 | cut -d " " -f 2 | tail -1)
 echo -e " \033[1;91m┌──────────────────────────────────────┐\033[0m"
 printf "  %-13s %-7s %-8s %2s\n"   "  USEENAME : ${akun}"
-echo -e "Exp Akun : ${exp}"
+echo -e "    Exp Akun : ${expe}"
 printf "  %-13s %-7s %-8s %2s\n" "  LOGIN    : $lastlogin"
 printf "  %-13s %-7s %-8s %2s\n" "  LIMIT GB : ${gb}/${lim}"
 printf "  %-13s %-7s %-8s %2s\n" "  LIMIT IP : $jum2/$iplimit"
