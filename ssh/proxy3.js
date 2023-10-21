@@ -1,6 +1,6 @@
 /*
 * Proxy Bridge
-* Copyright PANCHO7532 - P7COMUnications LLC (c) 2021
+* Copyright 2022 - P7COMUnications LLC (c) 2021
 * Dedicated to Emanuel Miranda, for giving me the idea to make this :v
 */
 const net = require('net');
@@ -56,7 +56,7 @@ const server = net.createServer();
 server.on('connection', function(socket) {
     var packetCount = 0;
     //var handshakeMade = false;
-    socket.write("HTTP/1.1 101 Autoscript By ARTA M\r\nContent-Length: 1048576000000\r\n\r\n", function(err) {
+    socket.write("HTTP/1.1 101 Autoscript\r\nContent-Length: 1048576000000\r\n\r\n", function(err) {
         if(err) {
             console.log("[SWRITE] Failed to write response to " + socket.remoteAddress + ":" + socket.remotePort + ", error: " + err);
         }
